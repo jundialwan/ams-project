@@ -1,22 +1,29 @@
 import numpy as np
 import pandas as pd
 import xgboost as xgb
-import os
-import gc
-import matplotlib.pyplot as plt
-import seaborn as sns
+#import seaborn as sns
+#import matplotlib.pyplot as plt
 
 from nltk.corpus import stopwords
 from collections import Counter
+#from wordcloud import WordCloud
 
-df_train = pd.read_csv('train.csv')
-df_test = pd.read_csv('test.csv')
+#pal = sns.color_palette()
+
+df_train = pd.read_csv('../train.csv')
+df_test = pd.read_csv('../test.csv')
 
 train_qs = pd.Series(df_train['question1'].tolist() + df_train['question2'].tolist()).astype(str)
 test_qs = pd.Series(df_test['question1'].tolist() + df_test['question2'].tolist()).astype(str)
-
+"""
+cloud = WordCloud(width=1440, height=1080).generate(" ".join(train_qs.astype(str)))
+plt.figure(figsize=(20, 15))
+plt.imshow(cloud)
+plt.axis('off')
+plt.show()
+"""
 stops = set(stopwords.words("english"))
-
+"""
 # matching kata yang ada di dua pertanyaan untuk training
 def word_match_share(row):
     q1words = {}
@@ -35,6 +42,8 @@ def word_match_share(row):
     return R
 	
 train_word_match = df_train.apply(word_match_share, axis=1, raw=True)
+"""
+print train_qs
 
 # Menghitung weight kata dan melihat keseringan muncul
 # Jika kata muncul hanya sekali, kita abaikan (karena mungkin dia Typo)
