@@ -1,3 +1,5 @@
+# Log loss jadi 0.51 dari 0.55
+
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.model_selection import train_test_split
